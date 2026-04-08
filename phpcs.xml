@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<ruleset name="We Spam Econo">
+	<description>WordPress Coding Standards configuration for We Spam Econo</description>
+
+	<!-- What to scan -->
+	<file>.</file>
+	<exclude-pattern>/vendor/</exclude-pattern>
+	<exclude-pattern>/node_modules/</exclude-pattern>
+	<exclude-pattern>/assets/</exclude-pattern>
+	<exclude-pattern>/tests/</exclude-pattern>
+
+	<!-- How to scan -->
+	<arg value="sp"/>
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+
+	<!-- Use WordPress Coding Standards -->
+	<rule ref="WordPress">
+		<!--
+			Main plugin file is named after the plugin, not the class.
+			debug-helpers.php contains helper classes, not a single class file.
+		-->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+
+		<!--
+			This plugin uses a custom database table with its own caching layer.
+			Direct database queries are intentional and necessary.
+		-->
+		<exclude name="WordPress.DB.DirectDatabaseQuery.DirectQuery"/>
+		<exclude name="WordPress.DB.DirectDatabaseQuery.NoCaching"/>
+		<exclude name="WordPress.DB.DirectDatabaseQuery.SchemaChange"/>
+
+		<!--
+			Table names cannot be parameterized with $wpdb->prepare().
+			We use $wpdb->prefix which is safe.
+		-->
+		<exclude name="WordPress.DB.PreparedSQL.InterpolatedNotPrepared"/>
+		<exclude name="WordPress.DB.PreparedSQL.NotPrepared"/>
+
+		<!--
+			We intentionally check deprecated WordPress options (blacklist_keys)
+			to clean up legacy data during migration.
+		-->
+		<exclude name="WordPress.WP.DeprecatedParameterValues.Disallowed_keysFound"/>
+		<exclude name="WordPress.WP.DeprecatedParameterValues.Found"/>
+		<exclude name="WordPress.WP.DeprecatedParameters.Disallowed_keysFound"/>
+
+		<!--
+			debug-helpers.php contains both WSE_Debug and WSE_CLI classes.
+			This is intentional to keep debug functionality together.
+		-->
+		<exclude name="Generic.Files.OneObjectStructurePerFile.MultipleFound"/>
+
+		<!--
+			Debug logging is wrapped in WP_DEBUG checks.
+		-->
+		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_error_log"/>
+
+		<!--
+			Display-only checks for query string parameters don't need nonce verification.
+		-->
+		<exclude name="WordPress.Security.NonceVerification.Recommended"/>
+	</rule>
+
+	<!-- Text domain for i18n -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="we-spam-econo"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Minimum supported PHP version -->
+	<config name="minimum_supported_wp_version" value="5.6"/>
+	<config name="testVersion" value="7.0-"/>
+</ruleset>
