@@ -109,16 +109,20 @@ wp wse update     # Run blocklist update immediately
 wp wse flush      # Clear the blocklist cache
 ```
 
+## Automatic Updates
+
+This plugin supports [Git Updater](https://git-updater.com/). Install Git Updater and you'll get update notifications when new versions are released.
+
 ## Requirements
 
-- WordPress 5.6+
-- PHP 7.0+
+- WordPress 6.0+
+- PHP 8.3+
 
 ## Credits
 
 - Original plugin by [Andrew Norcross](https://github.com/norcross)
-- Default blocklist maintained by [Grant Hutchinson](https://splorp.com/)
-- Forked and maintained by [Jason Cosper](https://jasoncosper.com)
+- Default blocklist maintained by [Grant Hutchinson](https://github.com/splorp)
+- Forked and maintained by [Jason Cosper](https://github.com/boogah)
 
 ## License
 
