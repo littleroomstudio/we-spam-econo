@@ -3,6 +3,7 @@
  * Plugin Name:        We Spam Econo
  * Plugin URI:         https://github.com/littleroomstudio/we-spam-econo
  * GitHub Plugin URI:  https://github.com/littleroomstudio/we-spam-econo
+ * Primary Branch:     main
  * Description:        Block comment spam using a continuously-updated blocklist of 64,000+ known spam terms stored in a high-performance custom database table.
  * Version:            2.0.4
  * Author:             Little Room
